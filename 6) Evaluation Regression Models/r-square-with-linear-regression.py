@@ -1,0 +1,61 @@
+# import library
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# import data
+df = pd.read_csv("linear-regression-dataset.csv",sep = ";")
+
+# plot data
+plt.scatter(df.deneyim,df.maas)
+plt.xlabel("deneyim")
+plt.ylabel("maas")
+plt.show()
+
+# linear regression
+
+# sklearn library
+from sklearn.linear_model import LinearRegression
+
+# linear regression model
+linear_reg = LinearRegression()
+
+x = df.deneyim.values.reshape(-1,1)
+y = df.maas.values.reshape(-1,1)
+
+linear_reg.fit(x,y)
+
+y_head = linear_reg.predict(x)  # maas
+
+plt.plot(x, y_head,color = "red")
+
+
+from sklearn.metrics import r2_score
+
+print("r_square score: ", r2_score(y,y_head))
+
+"""
+SSR
+residual = y-y head
+sum square residual = sum((y-y head)^2)
+
+SST
+y_avg (ortalama)
+sum square total = sum((y-y_avg)^2)
+
+
+(r_square) R^2 = 1-(SSR/SST)
+
+R^2 bire ne kadar yakın ise bu o kadar iyi demektir.
+
+"""
+
+
+
+
+
+
+
+
+
+
+
